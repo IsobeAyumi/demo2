@@ -9,5 +9,4 @@ public class UserPageController {
 	public String userPage() {
 		return "userPage";
 	}
-
 }

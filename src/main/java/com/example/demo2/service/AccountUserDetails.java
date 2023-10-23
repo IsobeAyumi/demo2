@@ -8,74 +8,62 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import com.example.demo2.data.entity.Users;
 
-public class AccountUserDetails implements UserDetails{//UserDetailsを実装する
+public class AccountUserDetails implements UserDetails { // UserDetailsを実装する
 	private Users user;
-	
+
 	public AccountUserDetails(Users user) {
 		this.user = user;
 	}
-	
-	//ユーザーに与えられている権限リストを返却する
+
+	// ユーザに与えられている権限リストを返却する
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities(){
-		return AuthorityUtils.createAuthorityList("ROLE_"+user.getRoleName());
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		return AuthorityUtils.createAuthorityList("ROLE_" + user.getRoleName());
 	}
-		
-	
-	//パスワードを返却する
+
+	// パスワードを返却する
 	@Override
 	public String getPassword() {
 		return user.getPassword();
 	}
-	
-	//ユーザー名を返却する
+
+	// ユーザー名を返却する
 	@Override
 	public String getUsername() {
 		return user.getUserName();
 	}
-	
-	//アカウントの有効期限の状態を判定する
+
+	// アカウントの有効期限の状態を判定する
 	@Override
 	public boolean isAccountNonExpired() {
 		return true;
 	}
-	
-	//アカウントのロック状態を判定する
+
+	// アカウントのロック状態を判定する
 	@Override
 	public boolean isAccountNonLocked() {
 		return true;
 	}
-	
-	//資格情報の有効期限の状態を判定する
+
+	// 資格情報の有効期限の状態を判定する
 	@Override
 	public boolean isCredentialsNonExpired() {
 		return true;
 	}
-	
-	//有効なユーザーかを判定する
+
+	// 有効なユーザかを判定する
 	@Override
 	public boolean isEnabled() {
 		return true;
 	}
-	
-	//Entityを返す
+
+	// Entityを返す
 	public Users getUser() {
 		return user;
 	}
-	
-	//名前を返す
+
+	// 名前を返す
 	public String getName() {
 		return user.getName();
 	}
-
 }
-
-
-
-
-
-
-
-
-
-
